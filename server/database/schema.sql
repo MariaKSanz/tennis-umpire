@@ -1,12 +1,24 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+CREATE TABLE `match` (
+                         `id` integer PRIMARY KEY AUTO_INCREMENT,
+                         `datetime` datetime,
+                         `tournament` varchar(255),
+                         `player_1_id` integer,
+                         `player_2_id` integer,
+                         `score` varchar(255),
+                         `winner_id` integer
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+CREATE TABLE `player` (
+                          `id` integer PRIMARY KEY AUTO_INCREMENT,
+                          `firstname` varchar(255),
+                          `lastname` varchar(255),
+                          `country` varchar(255),
+                          `ranking` integer,
+                          `photo_url` varchar(255)
 );
+
+ALTER TABLE `match` ADD FOREIGN KEY (`player_1_id`) REFERENCES `player` (`id`);
+
+ALTER TABLE `match` ADD FOREIGN KEY (`player_2_id`) REFERENCES `player` (`id`);
+
+ALTER TABLE `match` ADD FOREIGN KEY (`winner_id`) REFERENCES `player` (`id`);
