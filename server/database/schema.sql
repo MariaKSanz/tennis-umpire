@@ -1,4 +1,4 @@
-CREATE TABLE `match` (
+CREATE TABLE `encounter` (
                          `id` integer PRIMARY KEY AUTO_INCREMENT,
                          `datetime` datetime,
                          `tournament` varchar(255),
@@ -17,8 +17,8 @@ CREATE TABLE `player` (
                           `photo_url` varchar(255)
 );
 
-ALTER TABLE `match` ADD FOREIGN KEY (`player_1_id`) REFERENCES `player` (`id`);
+ALTER TABLE encounter ADD FOREIGN KEY (`player_1_id`) REFERENCES `player` (`id`);
 
-ALTER TABLE `match` ADD FOREIGN KEY (`player_2_id`) REFERENCES `player` (`id`);
+ALTER TABLE encounter ADD FOREIGN KEY (`player_2_id`) REFERENCES `player` (`id`);
 
-ALTER TABLE `match` ADD FOREIGN KEY (`winner_id`) REFERENCES `player` (`id`);
+ALTER TABLE encounter ADD FOREIGN KEY (`winner_id`) REFERENCES `player` (`id`);

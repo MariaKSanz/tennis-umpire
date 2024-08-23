@@ -1,16 +1,16 @@
 // Import required dependencies
 const { app, request, database } = require("../config");
 
-// Test suite for the GET /api/items route
-describe("GET /api/items", () => {
-  it("should fetch items successfully", async () => {
+// Test suite for the GET /api/matches route
+describe("GET /api/matches", () => {
+  it("should fetch matches successfully", async () => {
     // Mock empty rows returned from the database
     const rows = [];
 
     // Mock the implementation of the database query method
     jest.spyOn(database, "query").mockImplementation(() => [rows]);
 
-    // Send a GET request to the /api/items endpoint
+    // Send a GET request to the /api/matches endpoint
     const response = await request(app).get("/api/items");
 
     // Assertions
@@ -19,8 +19,8 @@ describe("GET /api/items", () => {
   });
 });
 
-// Test suite for the GET /api/items/:id route
-describe("GET /api/items/:id", () => {
+// Test suite for the GET /api/matches/:id route
+describe("GET /api/matches/:id", () => {
   it("should fetch a single item successfully", async () => {
     // Mock rows returned from the database
     const rows = [{}];
@@ -28,7 +28,7 @@ describe("GET /api/items/:id", () => {
     // Mock the implementation of the database query method
     jest.spyOn(database, "query").mockImplementation(() => [rows]);
 
-    // Send a GET request to the /api/items/:id endpoint
+    // Send a GET request to the /api/matches/:id endpoint
     const response = await request(app).get(`/api/items/1`);
 
     // Assertions
@@ -43,7 +43,7 @@ describe("GET /api/items/:id", () => {
     // Mock the implementation of the database query method
     jest.spyOn(database, "query").mockImplementation(() => [rows]);
 
-    // Send a GET request to the /api/items/:id endpoint with an invalid ID
+    // Send a GET request to the /api/matches/:id endpoint with an invalid ID
     const response = await request(app).get("/api/items/0");
 
     // Assertions
@@ -52,10 +52,10 @@ describe("GET /api/items/:id", () => {
   });
 });
 
-// Test suite for the POST /api/items route
+// Test suite for the POST /api/matches route
 // Doesn't pass: maybe something to change in app config :/
 // Hint: enabling error log could help ;)
-describe("POST /api/items", () => {
+describe("POST /api/matches", () => {
   it("should add a new item successfully", async () => {
     // Mock result of the database query
     const result = [{ insertId: 1 }];
@@ -66,7 +66,7 @@ describe("POST /api/items", () => {
     // Fake item data
     const fakeItem = { title: "foo", user_id: 0 };
 
-    // Send a POST request to the /api/items endpoint with a test item
+    // Send a POST request to the /api/matches endpoint with a test item
     const response = await request(app).post("/api/items").send(fakeItem);
 
     // Assertions
