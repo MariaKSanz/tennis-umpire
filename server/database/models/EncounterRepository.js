@@ -12,8 +12,8 @@ class EncounterRepository extends AbstractRepository {
   async create(encounter) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (id, datetime, tournament, player_1_id, player_2_id, score, winner_id) values (?, ?, ?)`,
-      [encounter.id, encounter.datetime, encounter.tournament, encounter.player_1_id, encounter.score, encounter.winner_id ]
+      `insert into ${this.table} (tournament, player_1_id, player_2_id, score, winner_id) values (?, ?, ?, ?, ?)`,
+      [encounter.tournament, encounter.player_1_id, encounter.player_2_id, encounter.score, encounter.winner_id ]
     );
 
     // Return the ID of the newly inserted encounter

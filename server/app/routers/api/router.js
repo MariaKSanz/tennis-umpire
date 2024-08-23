@@ -7,12 +7,12 @@ const router = express.Router();
 /* ************************************************************************* */
 
 const encountersRouter = require("./encounters/router");
-
-router.use("/encounters", encountersRouter);
-
 const playersRouter = require("./players/router");
 
+router.use("/encounters", encountersRouter);
 router.use("/players", playersRouter);
+
+
 /* ************************************************************************* */
 
 module.exports = router;

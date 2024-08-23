@@ -4,10 +4,10 @@ const tables = require("../../database/tables");
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
-    // Fetch all matches from the database
+    // Fetch all encounters from the database
     const encounters = await tables.encounter.readAll();
 
-    // Respond with the matches in JSON format
+    // Respond with the encounters in JSON format
     res.json(encounters);
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -37,14 +37,14 @@ const read = async (req, res, next) => {
 // The E of BREAD - Edit (Update) operation
 // const edit = async (req, res, next) => {
 //   try {
-//     const match = await tables.match.findById(req.params.id);
-//     if (!match) return res.status(404).json({ error: 'Match not found' });
+//     const encounter = await tables.encounter.findById(req.params.id);
+//     if (!encounter) return res.status(404).json({ error: 'Match not found' });
 //
-//     match.score = req.body.score || match.score;
-//     match.winner_id = req.body.winner_id || match.winner_id;
+//     encounter.score = req.body.score || encounter.score;
+//     encounter.winner_id = req.body.winner_id || encounter.winner_id;
 //
-//     await match.save();
-//     res.json({ message: 'Match updated successfully', match });
+//     await encounter.save();
+//     res.json({ message: 'Match updated successfully', encounter });
 //   } catch (err) {
 //     next(err);
 //   }
@@ -57,7 +57,7 @@ const add = async (req, res, next) => {
 
   try {
     // Insert the item into the database
-    const insertId = await tables.match.create(encounter);
+    const insertId = await tables.encounter.create(encounter);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
@@ -71,10 +71,10 @@ const add = async (req, res, next) => {
 const destroy = async (req, res) => {
   try {
     // Fetch the userId from the request parameters
-    const matchID = req.params.id;
+    const encounterID = req.params.id;
 
     // Attempt to delete the user from the database
-    const rows = await tables.match.destroy(matchID);
+    const rows = await tables.encounter.destroy(encounterID);
 
     // Check if any rows were affected (meaning the user was deleted)
     if (rows.affectedRows > 0) {
@@ -83,8 +83,6 @@ const destroy = async (req, res) => {
       res.sendStatus(404);
     }
   } catch (err) {
-    // Pass any errors to the error-handling middleware
-    console.error("Error deleting a match:", err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
