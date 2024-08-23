@@ -1,5 +1,6 @@
 // Import the repository modules responsible for handling data operations on the tables
 const EncounterRepository = require("./models/EncounterRepository");
+const PlayerRepository = require("./models/PlayerRepository");
 
 // Create an empty object to hold data repositories for different tables
 const tables = {};
@@ -10,6 +11,7 @@ const tables = {};
 
 // Register each repository as data access point for its table
 tables.encounter = new EncounterRepository();
+tables.player = new PlayerRepository();
 
 /* ************************************************************************* */
 

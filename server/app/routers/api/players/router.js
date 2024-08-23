@@ -3,16 +3,19 @@ const express = require("express");
 const router = express.Router();
 
 /* ************************************************************************* */
-// Import And Use Routers Here
+// Define Your API Routes Here
 /* ************************************************************************* */
 
-const encountersRouter = require("./encounters/router");
+// Import item-related actions
+const { browse, read} = require("../../../controllers/playerActions");
 
-router.use("/encounters", encountersRouter);
+// Route to get a list of players
+router.get("/", browse);
 
-const playersRouter = require("./players/router");
+// Route to get a specific player by id
+router.get("/:id", read);
 
-router.use("/players", playersRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
