@@ -12,12 +12,15 @@ class EncounterRepository extends AbstractRepository {
   async create(encounter) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (tournament, player_1_id, player_2_id, score, winner_id) values (?, ?, ?, ?, ?)`,
-      [encounter.tournament, encounter.player_1_id, encounter.player_2_id, encounter.score, encounter.winner_id ]
+      `insert into ${this.table} (played_at, tournament, player_1_id, player_2_id, score, winner_id) values (?, ?, ?, ?, ?, ?)`,
+      [encounter.played_at, encounter.tournament, encounter.player_1_id, encounter.player_2_id, encounter.score, encounter.winner_id ]
     );
 
-    // Return the ID of the newly inserted encounter
-    return result.insertId;
+    if (result) {
+      return this.read(result.insertId)
+    }
+
+    return null;
   }
 
   // The Rs of CRUD - Read operations
@@ -45,19 +48,19 @@ class EncounterRepository extends AbstractRepository {
   }
 
   // The U of CRUD - Update operation
-  //
-  //  async update(encounter) {
-  //  // Execute the SQL UPDATE query to update a specific category
-  //  const [result] = await this.database.query(
-  //  `update ${this.table} set pseudo = ?, email = ? where id = ?`,
-  //  [user.pseudo, user.email, user.id]
-  //  );
-  //
-  //  // Return how many rows were affected
-  //  return result.affectedRows;
-  //  }
-   //   ...
-   // }
+
+   async update(id, encounter) {
+     const [result] = await this.database.query(
+      `UPDATE ${this.table} SET played_at=?, tournament=?, player_1_id=?, player_2_id=?, score=?, winner_id=? WHERE id=?`,
+       [encounter.played_at, encounter.tournament, encounter.player_1_id, encounter.player_2_id, encounter.score, encounter.winner_id, id]
+     );
+
+     if (result) {
+       return this.read(id)
+     }
+
+     return null;
+    }
 
   // The D of CRUD - Delete operation
 

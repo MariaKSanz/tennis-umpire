@@ -1,6 +1,6 @@
 CREATE TABLE `encounter` (
                          `id` integer PRIMARY KEY AUTO_INCREMENT,
-                         `datetime` datetime,
+                         `played_at` datetime,
                          `tournament` varchar(255),
                          `player_1_id` integer,
                          `player_2_id` integer,

@@ -34,21 +34,27 @@ const read = async (req, res, next) => {
   }
 };
 
-// The E of BREAD - Edit (Update) operation
-// const edit = async (req, res, next) => {
-//   try {
-//     const encounter = await tables.encounter.findById(req.params.id);
-//     if (!encounter) return res.status(404).json({ error: 'Match not found' });
-//
-//     encounter.score = req.body.score || encounter.score;
-//     encounter.winner_id = req.body.winner_id || encounter.winner_id;
-//
-//     await encounter.save();
-//     res.json({ message: 'Match updated successfully', encounter });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+ // The E of BREAD - Edit (Update) operation
+
+ const update = async (req, res, next) => {
+ // Extract the user data from the request body and params
+ const {id} = req.params;
+ const encounter = req.body;
+
+ try {
+ // Update the user in the database
+ const updatedEncounter = await tables.encounter.update(id, encounter);
+
+ if (updatedEncounter == null) {
+   res.sendStatus(404);
+ }
+
+   res.status(200).json(updatedEncounter);
+ } catch (err) {
+ // Pass any errors to the error-handling middleware
+ next(err);
+ }
+ };
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
@@ -57,10 +63,10 @@ const add = async (req, res, next) => {
 
   try {
     // Insert the item into the database
-    const insertId = await tables.encounter.create(encounter);
+    const newEncounter = await tables.encounter.create(encounter);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
-    res.status(201).json({ insertId });
+    res.status(201).json(newEncounter);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -77,13 +83,9 @@ const destroy = async (req, res) => {
     const rows = await tables.encounter.destroy(encounterID);
 
     // Check if any rows were affected (meaning the user was deleted)
-    if (rows.affectedRows > 0) {
-      res.sendStatus(200);
-    } else {
-      res.sendStatus(404);
-    }
+    res.sendStatus(rows.affectedRows > 0 ? 204 : 404);
   } catch (err) {
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({error: "Internal Server Error"});
   }
 };
 
@@ -91,7 +93,7 @@ const destroy = async (req, res) => {
 module.exports = {
   browse,
   read,
-  // edit,
+  update,
   add,
   destroy,
 };

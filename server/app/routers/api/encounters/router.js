@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 /* ************************************************************************* */
 
 // Import item-related actions
-const { browse, read, add, destroy } = require("../../../controllers/encounterActions");
+const { browse, read, add, destroy, update} = require("../../../controllers/encounterActions");
 
 // Route to get a list of matches
 router.get("/", browse);
@@ -24,7 +24,7 @@ router.get("/:id", read);
 router.post("/", add);
 
 // Route to edit a match
-// router.put("/:id", edit);
+router.put("/:id", update);
 
 // Route to delete a match
 router.delete("/:id", destroy);
