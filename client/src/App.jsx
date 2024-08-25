@@ -6,7 +6,7 @@ function App() {
     <main className="container">
       <Header />
       <nav className="navbar">
-        <ul>tennis-logo</ul>
+        <ul>welcome</ul>
       </nav>
     </main>
   );
