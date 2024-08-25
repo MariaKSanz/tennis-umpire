@@ -12,7 +12,6 @@ const playersRouter = require("./players/router");
 router.use("/encounters", encountersRouter);
 router.use("/players", playersRouter);
 
-
 /* ************************************************************************* */
 
 module.exports = router;

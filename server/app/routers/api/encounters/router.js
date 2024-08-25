@@ -2,7 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -12,7 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 /* ************************************************************************* */
 
 // Import item-related actions
-const { browse, read, add, destroy, update} = require("../../../controllers/encounterActions");
+const {
+  browse,
+  read,
+  add,
+  destroy,
+  update,
+} = require("../../../controllers/encounterActions");
 
 // Route to get a list of matches
 router.get("/", browse);

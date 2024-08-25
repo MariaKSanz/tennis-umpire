@@ -15,7 +15,6 @@ router.get("/", browse);
 // Route to get a specific player by id
 router.get("/:id", read);
 
-
 /* ************************************************************************* */
 
 module.exports = router;

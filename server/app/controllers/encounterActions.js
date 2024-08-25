@@ -34,27 +34,27 @@ const read = async (req, res, next) => {
   }
 };
 
- // The E of BREAD - Edit (Update) operation
+// The E of BREAD - Edit (Update) operation
 
- const update = async (req, res, next) => {
- // Extract the user data from the request body and params
- const {id} = req.params;
- const encounter = req.body;
+const update = async (req, res, next) => {
+  // Extract the user data from the request body and params
+  const { id } = req.params;
+  const encounter = req.body;
 
- try {
- // Update the user in the database
- const updatedEncounter = await tables.encounter.update(id, encounter);
+  try {
+    // Update the user in the database
+    const updatedEncounter = await tables.encounter.update(id, encounter);
 
- if (updatedEncounter == null) {
-   res.sendStatus(404);
- }
+    if (updatedEncounter == null) {
+      res.sendStatus(404);
+    }
 
-   res.status(200).json(updatedEncounter);
- } catch (err) {
- // Pass any errors to the error-handling middleware
- next(err);
- }
- };
+    res.status(200).json(updatedEncounter);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
@@ -85,7 +85,7 @@ const destroy = async (req, res) => {
     // Check if any rows were affected (meaning the user was deleted)
     res.sendStatus(rows.affectedRows > 0 ? 204 : 404);
   } catch (err) {
-    res.status(500).json({error: "Internal Server Error"});
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

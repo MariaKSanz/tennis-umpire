@@ -4,7 +4,7 @@ class PlayerRepository extends AbstractRepository {
   constructor() {
     // Call the constructor of the parent class (AbstractRepository)
     // and pass the table name "player" as configuration
-    super({table: "player"});
+    super({ table: "player" });
   }
 
   // The Rs of CRUD - Read operations
@@ -21,7 +21,6 @@ class PlayerRepository extends AbstractRepository {
     // Return the first row of the result, which represents the player
     return rows[0];
   }
-
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all players from the "player" table
