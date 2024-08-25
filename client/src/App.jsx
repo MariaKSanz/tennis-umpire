@@ -1,13 +1,10 @@
 import "./App.css";
-
+import Header from "./components/Header";
 
 function App() {
   return (
     <main className="container">
-      <header>
-        <h1 className="logo">Tennis</h1>
-      </header>
-
+      <Header />
       <nav className="navbar">
         <ul>tennis-logo</ul>
       </nav>
