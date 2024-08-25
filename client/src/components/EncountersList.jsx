@@ -50,6 +50,7 @@ function EncountersList({ encounters }) {
     </section>
   );
 }
+
 EncountersList.propTypes = {
   encounters: PropTypes.arrayOf(
     PropTypes.shape({
