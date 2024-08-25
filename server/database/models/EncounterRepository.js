@@ -35,7 +35,21 @@ class EncounterRepository extends AbstractRepository {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT e.id,
+              played_at    AS 'playedAt',
+              tournament,
+              score,
+              p1.firstname AS 'p1Firstname',
+              p1.lastname  AS 'p1Lastname',
+              p2.firstname AS 'p2Firstname',
+              p2.lastname  AS 'p2Lastname',
+              w.firstname  AS 'wFirstname',
+              w.lastname   AS 'wLastname'
+       FROM ${this.table} AS e
+                INNER JOIN player p1 ON e.player_1_id = p1.id
+                INNER JOIN player p2 ON e.player_2_id = p2.id
+                INNER JOIN player w ON e.winner_id = w.id
+       WHERE e.id = ?`,
       [id]
     );
 
@@ -45,7 +59,22 @@ class EncounterRepository extends AbstractRepository {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`
+        SELECT e.id,
+               played_at    AS 'playedAt',
+               tournament,
+               score,
+               p1.firstname AS 'p1Firstname',
+               p1.lastname  AS 'p1Lastname',
+               p2.firstname AS 'p2Firstname',
+               p2.lastname  AS 'p2Lastname',
+               w.firstname AS 'wFirstname',
+               w.lastname  AS 'wLastname'
+        FROM ${this.table} AS e
+                 INNER JOIN player p1 ON e.player_1_id = p1.id
+                 INNER JOIN player p2 ON e.player_2_id = p2.id
+                 INNER JOIN player w ON e.winner_id = w.id
+    `);
 
     // Return the array of users
     return rows;

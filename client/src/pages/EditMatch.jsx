@@ -1,10 +1,9 @@
 import Header from "../components/Header";
 
-
 function EditMatch() {
   return (
     <div>
-    <Header/>
+      <Header />
     </div>
   );
 }
