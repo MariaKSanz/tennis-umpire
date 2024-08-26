@@ -10,7 +10,7 @@ function WelcomeMessage() {
         <p>Enjoy exploring this platform on your phone or on your computer.</p>
         <p>
           Because we love tennis as much as you do, we made this website for
-          y'all.
+          you all.
         </p>
       </p>
     </section>

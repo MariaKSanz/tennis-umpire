@@ -18,6 +18,7 @@ function App() {
           className="add-match-button"
           variant="contained"
           href="/add-match"
+          color="warning"
         >
           Add a match
         </Button>
