@@ -9,8 +9,20 @@ import Paper from "@mui/material/Paper";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { IconButton } from "@mui/material";
+import connexion from "../services/connexion";
 
-function EncountersList({ encounters }) {
+
+function EncountersList({ encounters, setEncounters }) {
+  const handleDelete = (id) => {
+    connexion
+      .delete(`api/encounters/${id}`)
+      .then(() => {
+        setEncounters(encounters.filter((encounter) => encounter.id !== id));
+      })
+      .catch((error) => {
+        console.error("There was an error deleting the match!", error);
+      });
+  };
   return (
     <section className="table">
       <TableContainer component={Paper}>
@@ -51,7 +63,8 @@ function EncountersList({ encounters }) {
                 </TableCell>
                 <TableCell align="center">
                   <IconButton color="primary" aria-label="edit button"> <ModeEditIcon /> </IconButton>
-                  <IconButton color="error" aria-label="delete button"> <DeleteForeverIcon /> </IconButton>
+                  <IconButton onClick={() => handleDelete(encounter.id)} color="error" aria-label="delete button">
+                    <DeleteForeverIcon /> </IconButton>
                 </TableCell>
               </TableRow>
             ))}
@@ -77,5 +90,6 @@ EncountersList.propTypes = {
       wLastname: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  setEncounters: PropTypes.func.isRequired,
 };
 export default EncountersList;
