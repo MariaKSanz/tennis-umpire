@@ -9,8 +9,8 @@ import Paper from "@mui/material/Paper";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 import connexion from "../services/connexion";
-
 
 function EncountersList({ encounters, setEncounters }) {
   const handleDelete = (id) => {
@@ -37,7 +37,6 @@ function EncountersList({ encounters, setEncounters }) {
               <TableCell align="center">Score</TableCell>
               <TableCell align="center">Winner</TableCell>
               <TableCell align="center">Actions</TableCell>
-
             </TableRow>
           </TableHead>
           <TableBody>
@@ -49,7 +48,9 @@ function EncountersList({ encounters, setEncounters }) {
                 <TableCell component="th" scope="row">
                   {encounter.id}
                 </TableCell>
-                <TableCell align="center">{(new Date(encounter.playedAt).toLocaleString())}</TableCell>
+                <TableCell align="center">
+                  {new Date(encounter.playedAt).toLocaleString()}
+                </TableCell>
                 <TableCell align="center">{encounter.tournament}</TableCell>
                 <TableCell align="center">
                   {encounter.p1Firstname} {encounter.p1Lastname}
@@ -62,9 +63,19 @@ function EncountersList({ encounters, setEncounters }) {
                   {encounter.wFirstname} {encounter.wLastname}
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton color="primary" aria-label="edit button"> <ModeEditIcon /> </IconButton>
-                  <IconButton onClick={() => handleDelete(encounter.id)} color="error" aria-label="delete button">
-                    <DeleteForeverIcon /> </IconButton>
+                  <Link to={`/edit-match/${encounter.id}`}>
+                    <IconButton color="primary" aria-label="edit button">
+                      {" "}
+                      <ModeEditIcon />{" "}
+                    </IconButton>
+                  </Link>
+                  <IconButton
+                    onClick={() => handleDelete(encounter.id)}
+                    color="error"
+                    aria-label="delete button"
+                  >
+                    <DeleteForeverIcon />{" "}
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}
@@ -88,7 +99,7 @@ EncountersList.propTypes = {
       score: PropTypes.string.isRequired,
       wFirstname: PropTypes.string.isRequired,
       wLastname: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   setEncounters: PropTypes.func.isRequired,
 };

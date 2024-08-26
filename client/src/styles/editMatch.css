@@ -1,0 +1,22 @@
+.edit-match-content {
+  background-color: white;
+  padding: 20px;
+  margin: 0 auto;
+  width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.edit-match-description {
+  background-color: white;
+  padding: 20px;
+  margin: 0 auto;
+  width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

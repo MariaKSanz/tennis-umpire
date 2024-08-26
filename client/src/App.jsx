@@ -24,7 +24,10 @@ function App() {
         >
           Add a match
         </Button>
-        <EncountersList encounters={encountersState} setEncounters={setEncounterState} />
+        <EncountersList
+          encounters={encountersState}
+          setEncounters={setEncounterState}
+        />
       </section>
     </main>
   );

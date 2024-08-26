@@ -24,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/edit-match/:id",
     element: <EditMatch />,
+    loader: ({ params }) =>
+      axios
+        .get(`${import.meta.env.VITE_API_URL}/api/encounters/${params.id}`)
+        .then((res) => res.data),
   },
 ]);
 
