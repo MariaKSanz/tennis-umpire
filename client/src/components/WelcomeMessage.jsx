@@ -9,8 +9,8 @@ function WelcomeMessage() {
         matches you’ve been in charge of.
         <p>Enjoy exploring this platform on your phone or on your computer.</p>
         <p>
-          Because we love tennis as much as you do, we made this website for
-          you all.
+          Because we love tennis as much as you do, we made this website for you
+          all.
         </p>
       </p>
     </section>
