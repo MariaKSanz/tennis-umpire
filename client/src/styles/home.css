@@ -1,0 +1,13 @@
+.home {
+  background-image: url("../assets/images/background.jpg");
+}
+
+.main {
+  padding: 0 4rem;
+  text-align: center;
+}
+
+.table {
+  text-align: center;
+  margin-top: 2rem;
+}
