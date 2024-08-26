@@ -20,7 +20,7 @@ function AddMatch() {
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="matchInput">Enter the match details </label>
         <TextField id="outlined-basic" label="Tournament" variant="outlined" />
-        <button type="submit">Save</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
